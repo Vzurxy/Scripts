@@ -29,7 +29,7 @@ wait(5)
 Player.Character = Character
 wait(6)
 
-game:GetService('RunService').RenderSteppe:Connect(function()
+game:GetService('RunService').RenderStepped:Connect(function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CanCollide = true
 end)
 
