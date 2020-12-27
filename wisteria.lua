@@ -1,6 +1,6 @@
 -- https://discord.gg/2WDpPuD
 -- 1.7.0b
--- rblx acc: cegberry in case you ask
+-- rblx acc: cegberry in case you ask, no i dont care if i get banned from wisteria
 
 --[[
 
