@@ -1,4 +1,4 @@
--- https://discord.gg/2WDpPuD
+-- https://discord.gg/WuQE59cGAb
 -- 1.7.0b
 -- rblx acc: cegberry in case you ask, no i dont care if i get banned from wisteria
 
