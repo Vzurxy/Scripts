@@ -137,7 +137,7 @@ elseif getgcreg and getconstants and getupvalues and setupvalue then
 end
 
 local UI = Material.Load({
-    Title = "Wisteria | discord.gg/2WDpPuD",
+    Title = "Wisteria | discord.gg/WuQE59cGAb",
     Style = 1,
     SizeX = 400,
     SizeY = 400,
