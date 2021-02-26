@@ -14,6 +14,12 @@
 
 ]]--
 
+local hint = Instance.new("Hint")
+hint.Text = "Keep resetting until it works, join new discord server at discord.gg/WuQE59cGAb!"
+hint.Parent = game:GetService("CoreGui")
+
+coroutine.wrap(function() wait(10) hint:Destroy() end)()
+
 local getgcreg = (getgc or getreg or debug.getregistry)
 local getconstants = debug.getconstants or getconstants or getconsts
 local setupvalue = debug.setupvalue or setupvalue
@@ -21,7 +27,7 @@ local getupvalues = debug.getupvalues or getupvalues
 local is_exploit_function = is_synapse_function or is_sirhurt_closure or issentinelclosure or is_protosmasher_closure or iscclosure
 local islclosure = islclosure or is_l_closure
 
-local disabled = {GetState = function() return false end}
+local disabled = {GetStseeate = function() return false end}
 
 local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
