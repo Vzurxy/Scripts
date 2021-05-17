@@ -1,5 +1,5 @@
 -- https://discord.gg/WuQE59cGAb
--- 1.7.2
+-- 1.7.3a
 -- rblx acc: cegberry in case you ask, no i dont care if i get banned from wisteria
 
 --[[
@@ -80,38 +80,38 @@ Player.CharacterAdded:Connect(function(New)
 end)
 
 local u14
-for i,v in pairs(getgcreg()) do
-	if type(v) == "function" then
-		if islclosure(v) and not is_exploit_function(v) then
-			local constants = getconstants(v)
-			if table.find(constants, "New") and table.find(constants, "Animate") then
-				u14 = v
-				break
-			end
-		end
-	end
+for i,v in ipairs(getgcreg()) do
+    if type(v) == "function" then
+        if islclosure(v) and not is_exploit_function(v) then
+            local constants = getconstants(v)
+            if table.find(constants, "New") and table.find(constants, "Animate") then
+                u14 = v
+                break
+            end
+        end
+    end
 end
 
 coroutine.wrap(function()
-local Dialogue = game:GetService("Players").LocalPlayer.PlayerGui.DialogGui.Dialogue
-local function Notification(npc, text, t)
-    Dialogue.Visible = true
-    Dialogue.ImageTransparency = 0
-    Dialogue.NPCName.Text = npc
-    u14(text, t)
-    Dialogue.Visible = false
-    Dialogue.ImageTransparency = 1
-end
+    local Dialogue = game:GetService("Players").LocalPlayer.PlayerGui.DialogGui.Dialogue
+    local function Notification(npc, text, t)
+        Dialogue.Visible = true
+        Dialogue.ImageTransparency = 0
+        Dialogue.NPCName.Text = npc
+        u14(text, t)
+        Dialogue.Visible = false
+        Dialogue.ImageTransparency = 1
+    end
 
-local ClientVersion = "1.7.2"
-local Version = game:HttpGet("https://pastebin.com/raw/9DxXqa6F")
-if Version == ClientVersion then
-	Notification("Wisteria", "Made by ceg#0550 and mxntal#0124 and Pixleus#0991", 5)
-    Notification("Wisteria", "You are up to date!", 2)
-else
-    Notification("Wisteria", "Version out of date, new version is " .. Version .. ", your version is " .. ClientVersion .. "\n Please check the new update in discord.gg/WuQE59cGAb, it has been copied to your clipboard", 10)
-    setclipboard("https://discord.gg/WuQE59cGAb")
-end
+    local ClientVersion = "1.7.3a"
+    local Version = game:HttpGet("https://pastebin.com/raw/9DxXqa6F")
+    if Version == ClientVersion then
+        Notification("Wisteria", "Made by ceg#0550 and mxntal#0124 and Pixleus#0991", 5)
+        Notification("Wisteria", "You are up to date!", 2)
+    else
+        Notification("Wisteria", "Version out of date, new version is " .. Version .. ", your version is " .. ClientVersion .. "\n Please check the new update in discord.gg/WuQE59cGAb, it has been copied to your clipboard", 10)
+        setclipboard("https://discord.gg/WuQE59cGAb")
+    end
 end)()
 
 local Accept
@@ -126,7 +126,7 @@ elseif setupvalue and getsenv then
     end
 elseif getgcreg and getconstants and getupvalues and setupvalue then
     local GetResponse
-    for i,v in pairs(getgcreg()) do
+    for i,v in ipairs(getgcreg()) do
         if islclosure(v) and not is_exploit_function(v) then
             local constants = getconstants(v)
             local u2 = getupvalues(v)[2]
@@ -182,7 +182,7 @@ local AttackSpeed = Main.Slider({
 local TimerSpeed = Main.Slider({
     Text = "Reset Timer Speed",
     Callback = function(Value)
-		Speed["Reset Timer"].Value = Value
+        Speed["Reset Timer"].Value = Value
     end,
     Min = -100,
     Max = 100,
@@ -192,7 +192,7 @@ local TimerSpeed = Main.Slider({
 local TimerSpeed = Main.Slider({
     Text = "Cooldown Speed",
     Callback = function(Value)
-		Speed.Cooldown.Value = Value
+        Speed.Cooldown.Value = Value
     end,
     Min = -100,
     Max = 100,
@@ -238,7 +238,7 @@ local KillAura = Main.Toggle({
 
 local NPCs = {}
 
-for _, NPC in pairs(workspace.NPC:GetChildren()) do
+for _, NPC in ipairs(workspace.NPC:GetChildren()) do
     table.insert(NPCs, NPC.Name)
 end
 
@@ -283,9 +283,9 @@ local AutoMeditate = Auto.Toggle({
 })
 
 local function presskey(key)
-	local mapped = Enum.KeyCode[key]
-	if not mapped then return end
-	vim:SendKeyEvent(true, mapped, false, game)
+    local mapped = Enum.KeyCode[key]
+    if not mapped then return end
+    vim:SendKeyEvent(true, mapped, false, game)
     vim:SendKeyEvent(false, mapped, false, game)
 end
 
@@ -325,7 +325,7 @@ local FarmCivilian = Farm.Toggle({
 })
 
 local Rod
-for i,v in pairs(workspace.Shop:GetChildren()) do
+for i,v in ipairs(workspace.Shop:GetChildren()) do
     local h = v:FindFirstChild("Head")
     if h and (h.Position - Vector3.new(2351.92, 6.18, -136.95)).Magnitude < 1 then
         Rod = h
@@ -349,7 +349,7 @@ local FarmFish = Farm.Toggle({
         while AutoFish do
             local HasRod = false
 
-            for _, Item in pairs(Player.Backpack:GetChildren()) do
+            for _, Item in ipairs(Player.Backpack:GetChildren()) do
                 if Item:IsA("Tool") and Item.Name == "Fishing Rod" then
                     HasRod = true
                     break
@@ -454,7 +454,7 @@ local GetBreathing = Misc.Dropdown({
 local HideHair = Misc.Button({
     Text = "Hide Hair",
     Callback = function()
-        for _, Object in pairs(Character:GetChildren()) do
+        for _, Object in ipairs(Character:GetChildren()) do
             if Object.Name:lower():find("hair") then
                 Object:Destroy()
             end
@@ -500,7 +500,7 @@ local TpDemon = Misc.Button({
     Callback = function()
         local LivingChildren = Living:GetChildren()
         local Demons = {}
-        for _, Model in pairs(LivingChildren) do
+        for _, Model in ipairs(LivingChildren) do
             if Model.Name == "Demon" or Model.Name == "Strong Demon" then
                 table.insert(Demons, Model)
             end
@@ -531,14 +531,14 @@ local WalkSpeed = Misc.Slider({
 })
 
 game:GetService("Players").PlayerAdded:Connect(function(c)
-	if c.Name == "cegberry" then
+    if c.Name == "cegberry" then
         local x = Instance.new("Hint")
         x.Name = tostring(math.random())
         x.Parent = game:GetService("CoreGui")
         x.Text = "ceg (Yuma Kobayashi) joined server 😳😳😳"
         wait(20)
         x:Destroy()
-	end
+    end
 end)
 
 game:GetService("RunService").RenderStepped:Connect(function()
@@ -578,7 +578,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
     end
 
     if AutoMission:GetState() then
-        for Index, ClickDetector in pairs(QuestOne) do
+        for Index, ClickDetector in ipairs(QuestOne) do
             fireclickdetector(ClickDetector)
             wait(0.5)
             if Index == 1 then
@@ -586,7 +586,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
             end
         end
 
-        for Index, ClickDetector in pairs(QuestTwo) do
+        for Index, ClickDetector in ipairs(QuestTwo) do
             fireclickdetector(ClickDetector)
             wait(0.5)
             if Index == 1 then
@@ -594,21 +594,13 @@ game:GetService("RunService").RenderStepped:Connect(function()
             end
         end
     end
-	
-	if FarmTrainer:GetState() then
-		if not workspace.Living:FindFirstChild("FlameBoss") then
-			game:GetService("ReplicatedStorage").BattleNPC:FireServer("Flame")
-			Accept()
-			wait(1)
-		end
-	end
 
     if NoJumpCD:GetState() then
         Character.InCombat.Value = false
     end
 
     if KillAura:GetState() then
-        for i,v in pairs(Living:GetChildren()) do
+        for i,v in ipairs(Living:GetChildren()) do
             if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and v.Name ~= Player.Name and v.Name ~= "cegberry" then
                 local Root = Character.HumanoidRootPart
                 local RootTwo = v.HumanoidRootPart
@@ -625,17 +617,40 @@ game:GetService("RunService").RenderStepped:Connect(function()
         end
     end
 
+    if InfCombo:GetState() then
+        for _, Model in ipairs(Living:GetChildren()) do
+            repeat
+                if not Model:FindFirstChild("HumanoidRootPart") or Model.Name == Player.Name or Model.Name == "cegberry" then
+                    break
+                end
+                local Root = Character.HumanoidRootPart
+                local RootTwo = Model.HumanoidRootPart
+
+                if (Root.Position - RootTwo.Position).Magnitude < 25 then
+                    for i = 1,4 do
+                        i = tostring(i)
+                        ReplicatedStorage.Events.Attack:FireServer({
+                            Model
+                        }, ReplicatedStorage.Styles.Katana["Auto Attacks"][i], 69420, 69420, false)
+                    end
+                end
+            until true
+        end
+    end
+end)
+
+game:GetService("RunService").RenderStepped:Connect(function()
     if GourdFarm:GetState() then
         if Gourd ~= "" then
             local BuyGourd = true
 
-            for _, Item in pairs(Player.Backpack:GetChildren()) do
+            for _, Item in ipairs(Player.Backpack:GetChildren()) do
                 if Item:IsA("Tool") and Item.Name:find("Gourd") then
                     BuyGourd = false
                 end
             end
 
-            for _, Item in pairs(Player.Character:GetChildren()) do
+            for _, Item in ipairs(Player.Character:GetChildren()) do
                 if Item:IsA("Tool") and Item.Name:find("Gourd") then
                     BuyGourd = false
                 end
@@ -657,24 +672,24 @@ game:GetService("RunService").RenderStepped:Connect(function()
                 Accept()
             end
 
-            for _, Item in pairs(Player.Backpack:GetChildren()) do
+            for _, Item in ipairs(Player.Backpack:GetChildren()) do
                 if Item:IsA("Tool") and Item.Name:find("Gourd") then
                     Item.Parent = Character
                 end
             end
 
-            for _, Item in pairs(Player.Character:GetChildren()) do
+            for _, Item in ipairs(Player.Character:GetChildren()) do
                 if Item:IsA("Tool") and Item.Name:find("Gourd") then
                     Item:Activate()
                 end
             end
         end
     end
-	
-	if FarmSlayer:GetState() then
-	    Character.Humanoid:ChangeState(11)
 
-        for _, Slayer in pairs(Living:GetChildren()) do
+    if FarmSlayer:GetState() then
+        Character.Humanoid:ChangeState(11)
+
+        for _, Slayer in ipairs(Living:GetChildren()) do
             if Slayer.Name == "Slayer" then
                 local Root = Slayer.HumanoidRootPart
                 Root.Anchored = true
@@ -696,12 +711,12 @@ game:GetService("RunService").RenderStepped:Connect(function()
                 Slayer:Destroy() -- to speed up process
             end
         end
-	end
+    end
 
     if FarmDemon:GetState() then
         Character.Humanoid:ChangeState(11)
 
-        for _, Demon in pairs(Living:GetChildren()) do
+        for _, Demon in ipairs(Living:GetChildren()) do
             if Demon.Name == "Demon" or Demon.Name == "Strong Demon" then
                 local Root = Demon.HumanoidRootPart
                 Root.Anchored = true
@@ -728,7 +743,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
     if FarmCivilian:GetState() then
         Character.Humanoid:ChangeState(11)
 
-        for _, Civilian in pairs(Living:GetChildren()) do
+        for _, Civilian in ipairs(Living:GetChildren()) do
             if Civilian.Name == "Civilian" then
                 local Root = Civilian.HumanoidRootPart
                 Root.Anchored = true
@@ -743,7 +758,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
                         69420,
                         69420
                     )
-                    wait(0.1)
+                    wait(0.25)
                 end
 
                 Root.Anchored = false
@@ -765,7 +780,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
     end
 
     if TrinketFarm:GetState() then
-        for _, Trinket in pairs(Trinkets:GetChildren()) do
+        for _, Trinket in ipairs(Trinkets:GetChildren()) do
             fireclickdetector(Trinket.ClickDetector)
         end
         wait(0.25)
@@ -786,24 +801,11 @@ game:GetService("RunService").RenderStepped:Connect(function()
         end
     end
 
-    if InfCombo:GetState() then
-        for _, Model in pairs(Living:GetChildren()) do
-            repeat
-                if not Model:FindFirstChild("HumanoidRootPart") or Model.Name == Player.Name or Model.Name == "cegberry" then
-                    break
-                end
-                local Root = Character.HumanoidRootPart
-                local RootTwo = Model.HumanoidRootPart
-
-                if (Root.Position - RootTwo.Position).Magnitude < 25 then
-                    for i = 1,4 do
-                        i = tostring(i)
-                        ReplicatedStorage.Events.Attack:FireServer({
-                            Model
-                        }, ReplicatedStorage.Styles.Katana["Auto Attacks"][i], 69420, 69420, false)
-                    end
-                end
-            until true
+    if FarmTrainer:GetState() then
+        if not workspace.Living:FindFirstChild("FlameBoss") then
+            game:GetService("ReplicatedStorage").BattleNPC:FireServer("Flame")
+            Accept()
+            wait(1)
         end
     end
 end)
