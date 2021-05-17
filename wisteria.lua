@@ -1,5 +1,5 @@
 -- https://discord.gg/WuQE59cGAb
--- 1.7.1b
+-- 1.7.2
 -- rblx acc: cegberry in case you ask, no i dont care if i get banned from wisteria
 
 --[[
