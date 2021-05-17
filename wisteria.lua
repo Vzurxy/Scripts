@@ -42,6 +42,7 @@ local fishing = Player.Backpack:FindFirstChild("Fishing")
 
 local water = workspace.Water
 local sellcd = workspace.SellShop["Barrel of Fish"].ClickPart.ClickDetector
+local vim = game:GetService("VirtualInputManager")
 
 local _G, game, script, getfenv, setfenv, workspace,
     getmetatable, setmetatable, loadstring, coroutine,
@@ -102,7 +103,7 @@ local function Notification(npc, text, t)
     Dialogue.ImageTransparency = 1
 end
 
-local ClientVersion = "1.7.1b"
+local ClientVersion = "1.7.2"
 local Version = game:HttpGet("https://pastebin.com/raw/9DxXqa6F")
 if Version == ClientVersion then
 	Notification("Wisteria", "Made by ceg#0550 and mxntal#0124 and Pixleus#0991", 5)
@@ -281,13 +282,19 @@ local AutoMeditate = Auto.Toggle({
     Enabled = false
 })
 
-local Keys = {["B"] = 0x42, ["T"] = 0x54, ["Y"] = 0x59, ["R"] = 0x52, ["G"] = 0x47, ["N"] = 0x4E, ["H"] = 0x48}
+local function presskey(key)
+	local mapped = Enum.KeyCode[key]
+	if not mapped then return end
+	vim:SendKeyEvent(true, mapped, false, game)
+    vim:SendKeyEvent(false, mapped, false, game)
+end
+
 local Key = Player.PlayerGui.Meditation.Frame.Key
 
 Key:GetPropertyChangedSignal("Text"):Connect(function()
     wait(0.5)
     if AutoMeditate:GetState() then
-        keypress(Keys[Key.Text])
+        presskey(Key.Text)
     end
 end)
 
