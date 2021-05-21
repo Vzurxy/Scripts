@@ -815,6 +815,7 @@ local function createList(option, parent, holder)
 			if input.UserInputType == Enum.UserInputType.MouseButton1 then
 				clicking = false
 				tweenService:Create(label, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = inContact and Color3.fromRGB(20, 20, 20) or Color3.fromRGB(30, 30, 30)}):Play()
+				option:Close()
 			end
 			if input.UserInputType == Enum.UserInputType.MouseMovement then
 				inContact = false
